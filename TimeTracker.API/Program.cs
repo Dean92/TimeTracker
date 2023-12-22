@@ -1,4 +1,7 @@
 
+using Mapster;
+using TimeTracker.Shared.Models.Project;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,6 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+ConfigureMapster();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -30,3 +35,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfigureMapster()
+{
+    TypeAdapterConfig<Project, ProjectResponse>.NewConfig()
+        .Map(dest => dest.Description, src => src.ProjectDetails != null ? src.ProjectDetails.Description : null)
+        .Map(dest => dest.StartDate, src => src.ProjectDetails != null ? src.ProjectDetails.StartDate : null)
+        .Map(dest => dest.EndDate, src => src.ProjectDetails != null ? src.ProjectDetails.EndDate : null);
+}
