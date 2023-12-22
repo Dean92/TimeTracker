@@ -18,7 +18,7 @@ namespace TimeTracker.API.Repositories
             _context.TimeEntries.Add(timeEntry);
             await _context.SaveChangesAsync();
            
-            return await _context.TimeEntries.ToListAsync();
+            return await GetAllTimeEntries();
         }
 
         public async Task<List<TimeEntry>?> DeleteTimeEntry(int id)
@@ -56,7 +56,7 @@ namespace TimeTracker.API.Repositories
                 throw new EntityNotFoundException($"Entity with Id {id} was not found.");
             }
 
-            dbTimeEntry.Project = timeEntry.Project;
+            dbTimeEntry.ProjectId = timeEntry.ProjectId;
             dbTimeEntry.Start = timeEntry.Start;
             dbTimeEntry.End = timeEntry.End;
             dbTimeEntry.DateUpdated = DateTime.Now;
