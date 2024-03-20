@@ -1,14 +1,22 @@
-﻿@inherits LayoutComponentBase
+﻿
+@inherits LayoutComponentBase
 
+
+<BlazoredToasts Timeout="10"
+                ShowProgressBar="true"
+                PauseProgressOnHover="true"/>
+
+<div class="page">
 
 
 
 <main>
-    <div>
-        <ProjectSelector />
+    <div class="top-row float-end px-8">
+        <LoginDisplay />
     </div>
 <article>
     @Body
 </article>
 
 </main>
+</div>

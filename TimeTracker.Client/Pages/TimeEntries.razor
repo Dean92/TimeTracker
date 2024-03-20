@@ -1,14 +1,16 @@
 ﻿@page "/timeentries"
-@using System.Text.Json
 @inject HttpClient Http
 @inject ITimeEntryService TimeEntryService
 @inject NavigationManager NavigationManager
 @implements IDisposable
+@attribute [Authorize]
 
 <PageTitle>Time Entries</PageTitle>
 <h3>Time Entries</h3>
 
-<button class="" @onclick="CreateTimeEntry">Create Time Entry</button>
+<ProjectSelector />
+
+<button class="btn btn-primary" @onclick="CreateTimeEntry">Create Time Entry</button>
 
 
 
