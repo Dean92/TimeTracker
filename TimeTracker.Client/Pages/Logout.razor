@@ -1,0 +1,11 @@
+﻿@page "/logout"
+@inject IAuthService AuthService
+
+<PageTitle>Time Entry - Logout</PageTitle>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AuthService.Logout();
+    }
+}
